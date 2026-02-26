@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+double a1,b1,c1,d1,a2,b2,c2,d2,a3,b3,c3,d3,x,y,A1,B1,C1,A2,B2,C2;
+cout<< "solution for linear equations for three variable:" <<endl;
+cout<<"[a1x+b1y+c1z=d1 , a2x+b2y+c2z=d2 , a3x+b3y+c3z=d3]"<<endl<<endl;
+cout<< "a1 :";
+cin>> a1;
+cout<<"b1: ";
+cin>>b1;
+cout<<"c1: ";
+cin>>c1;
+cout<<"d1: ";
+cin>>d1;
+cout<<endl<<"a2: ";
+cin>>a2;
+cout<<"b2: ";
+cin>>b2;
+cout<< "c2: ";
+cin>>c2;
+cout<<"d2: ";
+cin >>d2;
+cout<<endl<<"a3: ";
+cin>> a3;
+cout<<"b3: ";
+cin>>b3;
+cout<<"c3: ";
+cin>>c3;
+cout<<"d3: ";
+cin>> d3;
+A1=((a1*c2)-(a2*c1));
+B1=((b1*c2)-(b2*c1));
+C1=((d1*c2)-(d2*c1));
+A2=((a2*c3)-(a3*c2));
+B2=((b2*c3)-(b3*c2));
+C2=((d2*c3)-(d3*c2));
+//now we are calculate solution
+if(((A1*B2)-(A2*B1))==0 )
+cout<<"No unique solution";
+else
+{
+x=((C1*B2)-(C2*B1))/((A1*B2)-(A2*B1));
+y=((A2*C1)-(A1*C2))/((A2*B1)-(A1*B2));
+cout<<endl<<"x="<<x;
+cout<<endl<<"y="<<y;
+if(c1!=0)
+cout<<endl<<"z="<<((d1-(a1*x)-(b1*y))/c1);
+else if(c2!=0)
+cout<<endl<<"z="<<((d2-(a2*x)-(b2*y))/c2);
+else if(c3!=0)
+cout<<endl<<"z="<<((d3-(a3*x)-(b3*y))/c3);
+else
+cout<<"Can not calculate z";
+}
+return 0;
+}
