@@ -1,0 +1,340 @@
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+#include<cstdlib>
+#include <fstream>
+#include <sstream>
+using namespace std;
+
+int main() {
+int cho,ch;
+long long mb,adh,acc,bal=0;
+string pan,nm,sub,bk,gml;
+long long ph,aadhar;
+string pass,name,gmail,submit,pass1,gmail1;
+    cout << setw(50) << "SBI welcomes you!";
+    cout <<"\n\n";
+for(int j=0;j<2;j++){ 
+cout<<"1. Bank Registration\n"; 
+cout<<"2. Bank Login\n3. Exit \n\n\n\n\n";
+
+cout<<"Choice: ";
+cin>>cho;
+system("clear");
+cin.ignore();
+//ofstream file("login.txt", ios::app);
+switch(cho){
+case 1:
+{
+ofstream file("login.txt", ios::app);
+cout<<"Enter Name:";
+getline(cin, name);
+cout<<"Mobile No.:";
+cin>>ph;
+cout<<"Aadhar No.:";
+cin>>aadhar;
+cout<<"Gmail id.:";
+cin>>gmail;
+cout<<"Enter Password: ";
+cin>>pass;
+cout<<"Enter Submit:";
+cin>>submit;
+if(submit=="Submit")
+{
+cout<<"\n\n\nYou are successful registered \n\n";
+//system("clear");
+}
+
+file<<gmail<<" "<<pass<<endl;
+file.close();
+//ofstream file("login.txt");
+}
+j=0;
+break;
+case 2:
+{
+int rep=0,com=0;
+while(rep<1)
+{
+ifstream file("login.txt");
+rep++;
+cout<<"Gmail id.:";
+cin>>gmail1;
+cout<<"Enter Password: ";
+cin>>pass1;
+while (file >> gmail >> pass)
+{
+if (gmail==gmail1&&pass==pass1)
+{
+system("clear");
+cout<<"login successfull !\n\n\n";
+com=1;
+break;
+}
+}
+file.close();
+if(com==0) {
+cout << "Invalid Gmail or Password!\n";
+rep=0;
+}
+}
+}
+    for(int i=0;i<2;i++)
+    {
+    cout<<"Banking Services are:\n\n\n";
+    cout << "1. Open new bank account \n2. View Passbook \n3. E-Aadhar  KYC \n4. Deposite \n5. Withdraw\n6. Check bank balance\n7. Exit";
+cout <<"\n\n\nSelect your choice:";    
+cin>> ch;
+cin.ignore();
+switch(ch){
+case 1:
+{
+ofstream file12("bank.txt", ios::app);
+cout<<"Customer Name:";
+getline(cin, nm);
+cout<<"Mobile No.:";
+cin>>mb;
+cout<<"Aadhar No.:";
+cin>>adh;
+cout<<"PAN:";
+cin>>pan;
+cout<<"Gmail id:";
+cin>>gml;
+cout<<"Enter submit:";
+cin>>sub;
+system("clear");
+srand(time(0));  // random seed
+
+     acc = rand() % 100000000;  // 0 se 9999 tak
+
+if(sub=="Submit")
+{
+    cout << "hello "<<nm<<", your account has been opened. Your account number is "<< acc;
+
+   }
+// file12<<acc<<"|"<<nm<<"|"<<mb<<"|"<<adh<<"|"<<pan<<"|"<<gml<<"|"<<bal<<endl;
+file12<<acc<<" "<<nm<<" "<<mb<<" "<<adh<<" "<<pan<<" "<<gml<<" "<<bal<<endl;
+file12.close();   
+   
+cout<<"\n\n\n\n\n\n\n\n";
+cout<<setw(50)<<"Enter Back:";
+cin>>bk; 
+if(bk=="Back") 
+system("clear");
+i=0;
+break;
+}
+case 2:
+{
+system("clear");
+//ifstream file1("data.txt");
+int ab=0;
+long long acc1;
+cout<<"Enter account number:";
+cin>>acc1;
+ifstream file12("bank.txt");
+while(file12>>acc>>nm>>mb>>adh>>pan>>gml>>bal)
+{
+if (acc==acc1)
+{
+cout<<"\n\n==========Passbook==========\n\n";
+cout<<"Account No: "<<acc;
+cout<<"\n\nCustomer Name:"<<nm;
+cout<<"\n\nMobile No.:"<<mb;
+cout<<"\n\nAadhar No.:"<<adh;
+cout<<"\n\nPAN:"<<pan;
+cout<<"\n\nGmail id:"<<gml;
+cout<<"\n\n==============================\n\n";
+cout<<"\n\n\n";
+ab=1;
+break;
+}
+}
+file12.close();   
+if(ab==0)
+{
+cout<<"User not found !\n\n\n\n";
+}
+i=0;
+break;
+}
+case 3:
+{
+system("clear");
+long long acc2 , adh2;
+int otp ,otp1,one,abc=0; 
+cout<<"Account No. : ";
+cin>>acc2;
+cout<<"\nAadhar No.: ";
+cin>>adh2;
+ifstream file12("bank.txt");
+while(file12>>acc>>nm>>mb>>adh>>pan>>gml>>bal)
+{
+if (acc==acc2&& adh==adh2)
+{
+srand(time(0));  // random seed
+ otp = rand() % 10000;  // 0 se 9999 tak
+system("clear");
+cout<<"Hello "<<nm<<", Your OTP is: "<<otp;
+cout<<"\n\n\n\n\nPress 1 to enter OTP: ";
+cin>>one;
+system("clear");
+int invld=0,two;
+while(invld<1){
+invld++;
+cout<<"Enter OTP:  ";
+cin>>otp1;
+if(otp==otp1)
+{
+cout<<"E-Aadhar KYC Successful !";
+}
+else{
+cout<<"Invalid OTP !!!";
+cout<<"\n\n\n\n\nPress 2 to Re-Enter OTP: ";
+cin >>two;
+system("clear");
+invld=0;
+}
+abc=1;
+break;
+}
+}
+}
+file12.close();   
+if(abc==0)
+{
+cout<<"User not found !\n\n\n\n";
+i=0;
+}
+i=0;
+break;
+}
+//   ==========case 3 complete===========
+case 4:
+{
+system("clear");
+int p=0;
+long long amt,acc3;
+cout<<"Enter Account No.: ";
+cin>>acc3;
+cout<<"\nEnter Amount: ";
+cin>>amt;
+ifstream file12("bank.txt");
+ofstream temp("temp.txt");
+while(file12>>acc>>nm>>mb>>adh>>pan>>gml>>bal)
+{
+    if(acc == acc3)
+    {
+        bal += amt;
+        cout<<"Amount deposited successfully!\n\n\n\n";
+        p=1;
+    }
+//    temp<<acc<<"|"<<nm<<"|"<<mb<<"|"<<adh<<"|"<<pan<<"|"<<gml<<"|"<<bal<<endl;
+temp<<acc<<" "<<nm<<" "<<mb<<" "<<adh<<" "<<pan<<" "<<gml<<" "<<bal<<endl;
+}
+file12.close();
+temp.close();
+remove("bank.txt");
+rename("temp.txt", "bank.txt");
+if(p==0){
+cout<<"Account not found!\n";
+}
+i=0;
+break;
+}
+
+///=================case 4 end==========
+case 5:
+{
+system("clear");
+int p=0;
+long long amt,acc3;
+cout<<"Enter Account No.: ";
+cin>>acc3;
+cout<<"\nEnter Amount: ";
+cin>>amt;
+ifstream file12("bank.txt");
+ofstream temp("temp.txt");
+while(file12>>acc>>nm>>mb>>adh>>pan>>gml>>bal)
+{
+    if(acc == acc3)
+    {
+ //       bal-= amt;
+        
+        if(bal >= amt)
+{
+    bal -= amt;
+    cout<<"Amount withdraw successfully!\n\n\n\n";
+}
+else
+{
+    cout<<"Insufficient balance!\n";
+}
+        
+     //       cout<<"Amount withdraw successfully!\n";
+        p=1;
+    }
+//temp<<acc<<"|"<<nm<<"|"<<mb<<"|"<<adh<<"|"<<pan<<"|"<<gml<<"|"<<bal<<endl;
+temp<<acc<<" "<<nm<<" "<<mb<<" "<<adh<<" "<<pan<<" "<<gml<<" "<<bal<<endl;
+}
+file12.close();
+temp.close();
+remove("bank.txt");
+rename("temp.txt", "bank.txt");
+if(p==0){
+cout<<"Account not found!\n";
+}
+i=0;
+break;
+}
+//================case 5 end =============
+case 6:
+{
+system("clear");
+int aa=0;
+long long acc5;
+cout<<"Enter Account No.: ";
+cin>>acc5;
+ifstream file12("bank.txt");
+while(file12>>acc>>nm>>mb>>adh>>pan>>gml>>bal)
+{
+if (acc==acc5)
+{
+cout<<"=======================\n\n\n";
+cout<<"Name: "<<nm;
+cout<<"\n\nTotal Balance is :"<<bal;
+cout<<"\n=======================\n\n\n";
+aa=1;
+}
+}
+file12.close(); 
+if(aa==0)
+{
+cout<<"User not found !!";
+}
+i=0;
+break;
+}
+case 7:
+{
+i=1;
+break;
+}
+default:
+cout << "Invalid choice..!!!";
+i=0;
+}
+}
+break;
+case 3:
+{
+j=2;
+break;
+}
+default:
+cout << "Invalid choice..!!!";
+j=0;
+}
+}
+    return 0;
+}
